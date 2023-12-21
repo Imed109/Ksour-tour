@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 // Custom card structure for ships
 const CustomShipCard = ({ ship }) => {
@@ -71,11 +72,11 @@ const Ship = () => {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
-        <Button
+        <Button as={Link} to="/formulaire"
           variant="primary"
-          onClick={() => alert("Redirect to ship reservation form")}
+          
         >
-          Make Ship Reservation
+          Reservation
         </Button>
       </div>
     </div>

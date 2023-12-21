@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 // Custom card structure
 const CustomCard = ({ company }) => {
@@ -105,11 +106,8 @@ const Airlines = () => {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
-        <Button
-          variant="primary"
-          onClick={() => alert("Redirect to reservation form")}
-        >
-          Make Reservation
+        <Button as={Link} to="/formulaire" variant="primary">
+          Reservation
         </Button>
       </div>
     </div>

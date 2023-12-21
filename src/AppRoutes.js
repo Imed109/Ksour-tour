@@ -6,6 +6,9 @@ import Hotels from "./components/sousComponents/Hotels";
 import Ship from "./components/sousComponents/Ship";
 import Omra from "./components/sousComponents/Omra";
 import Contact from "./components/sousComponents/Contact";
+import Formulaire from "./pages/user/Formulaire";
+import Login from "./pages/user/Login";
+import Register from "./pages/user/Register";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +19,11 @@ const AppRoutes = () => {
       <Route path="/ship" element={<Ship />} />
       <Route path="/omra" element={<Omra />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/airlines" element={<Airlines />} />
+      <Route path="/formulaire" element={<Formulaire />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
+
     </Routes>
   );
 };

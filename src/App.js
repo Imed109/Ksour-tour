@@ -11,7 +11,6 @@ function App() {
       <div className="App">
         <Header />
         <NavBar />
-        
         <AppRoutes />
         <Footer />
       </div>
