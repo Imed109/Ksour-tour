@@ -18,15 +18,31 @@ const Formulaire = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    setFormData({
-      fullName: "",
-      age: "",
-      email: "",
-      telephone: "",
-      inquiryType: "",
-      request: "",
-    });
+    if (isFormValid()) {
+      console.log("Form Data:", formData);
+      setFormData({
+        fullName: "",
+        age: "",
+        email: "",
+        telephone: "",
+        inquiryType: "",
+        request: "",
+      });
+    } else {
+      alert("Please fill in all fields correctly.");
+    }
+  };
+
+  const isFormValid = () => {
+    return (
+      formData.fullName.trim() !== "" &&
+      formData.age.trim() !== "" &&
+      parseInt(formData.age) > 0 &&
+      formData.email.trim() !== "" &&
+      formData.telephone.trim() !== "" &&
+      formData.inquiryType.trim() !== "" &&
+      formData.request.trim() !== ""
+    );
   };
 
   return (
@@ -42,6 +58,7 @@ const Formulaire = () => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
 
@@ -53,6 +70,8 @@ const Formulaire = () => {
                 name="age"
                 value={formData.age}
                 onChange={handleChange}
+                min="1"
+                required
               />
             </Form.Group>
 
@@ -64,6 +83,7 @@ const Formulaire = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
 
@@ -75,6 +95,7 @@ const Formulaire = () => {
                 name="telephone"
                 value={formData.telephone}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
 
@@ -85,6 +106,7 @@ const Formulaire = () => {
                 name="inquiryType"
                 value={formData.inquiryType}
                 onChange={handleChange}
+                required
               >
                 <option value="">Sélectionnez un type de demande</option>
                 <option value="Flights">Vols</option>
@@ -103,11 +125,12 @@ const Formulaire = () => {
                 name="request"
                 value={formData.request}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
 
             <Button variant="primary" type="submit" block>
-              Soumettre
+              Envoyer
             </Button>
           </Form>
         </Col>

@@ -1,0 +1,29 @@
+import React from "react";
+import { Card, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+const Omra = () => {
+  const offers = useSelector((state) => state.omra.offers);
+
+  return (
+    <div>
+      <h2>Omra Offers</h2>
+      <div className="d-flex flex-wrap">
+        {offers.map((offer, index) => (
+          <Card key={index} style={{ width: "18rem", margin: "10px" }}>
+            <Card.Img variant="top" src={offer.image} alt={offer.title} />
+            <Card.Body>
+              <Card.Title>{offer.title}</Card.Title>
+              <Card.Text>{offer.description}</Card.Text>
+              <Card.Text>Price: {offer.price}</Card.Text>
+              <Button as={Link} to="/formulaire" variant="primary">Reservation</Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Omra;

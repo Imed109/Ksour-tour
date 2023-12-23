@@ -18,8 +18,8 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/airlines">
               Airlines
             </Nav.Link>
-            <Nav.Link as={Link} to="/ship">
-              Ship
+            <Nav.Link as={Link} to="/Ferries">
+              Ferries
             </Nav.Link>
             <Nav.Link as={Link} to="/omra">
               Omra
