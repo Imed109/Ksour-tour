@@ -9,6 +9,7 @@ import Contact from "./pages/user/Contact";
 import Formulaire from "./pages/user/Formulaire";
 import Login from "./pages/authentification/Login";
 import Register from "./pages/authentification/Register";
+import AdminRoutes from "./pages/admin/AdminRoutes"; // Import the AdminRoutes component
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
       <Route path="/formulaire" element={<Formulaire />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register />} />
+      <Route path="/admin/*" element={<AdminRoutes />} />
     </Routes>
   );
 };

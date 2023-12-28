@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
+import Sidebar from "../../components/SideBar";
 
 const AdminAirlines = () => {
   const [newCompany, setNewCompany] = useState({ name: "", image: "" });
@@ -21,6 +22,8 @@ const AdminAirlines = () => {
   };
 
   return (
+    <div>
+      <Sidebar/>
     <Container
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "70vh", width: "90%" }} // Adjust the width here
@@ -66,6 +69,7 @@ const AdminAirlines = () => {
         </div>
       </div>
     </Container>
+    </div>
   );
 };
 

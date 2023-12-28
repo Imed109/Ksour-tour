@@ -2,7 +2,9 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import Header from "../../components/Header"
+import Footer from "../../components/Footer"
+import NavBar from "../../components/NavBar"
 // Custom card structure
 const CustomCard = ({ company }) => {
   return (
@@ -38,6 +40,9 @@ const Airlines = () => {
 
   return (
     <div>
+      <Header/>
+      <NavBar/>
+      
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {companies.map((company, index) => (
           <CustomCard key={index} company={company} />
@@ -48,6 +53,7 @@ const Airlines = () => {
           Reservation
         </Button>
       </div>
+      <Footer/>
     </div>
   );
 };

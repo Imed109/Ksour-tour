@@ -42,7 +42,7 @@ const Footer = () => {
               >
                 <Facebook style={{ marginRight: "10px" }} />
               </a>
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                 <Twitter style={{ marginRight: "10px" }} />
               </a>
               <a
