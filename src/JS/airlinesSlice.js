@@ -1,25 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const airlinesSlice = createSlice({
   name: "airlines",
   initialState: {
-    list: [
-      { name: "airtunise", image: "lien image" },
-      { name: "nouvelair", image: "lien image" },
-    ], // Initial list of companies
+    list: [],
   },
   reducers: {
-    addCompany(state, action) {
-      state.list.push(action.payload);
+    setAirlines(state, action) {
+      state.list = action.payload;
     },
-    removeCompany(state, action) {
-      state.list = state.list.filter(
-        (company) => company.name !== action.payload
-      );
-    },
-    // Add more actions as needed
   },
 });
 
-export const { addCompany, removeCompany } = airlinesSlice.actions;
+export const { setAirlines } = airlinesSlice.actions;
+
+export const fetchAirlines = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:3001/airline");
+    dispatch(setAirlines(response.data));
+  } catch (error) {
+    console.error("Error fetching airlines:", error);
+  }
+};
+
 export default airlinesSlice.reducer;
+

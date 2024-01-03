@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers, removeUser } from "../../JS/usersSlice";
-import { Button, ListGroup, Alert } from "react-bootstrap";
+import { fetchUsers } from "../../JS/usersSlice";
+import { ListGroup, Alert } from "react-bootstrap";
 
 const Users = () => {
   const users = useSelector((state) => state.users.list);
@@ -12,9 +12,7 @@ const Users = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
- const handleRemoveUser = (id) => {
-  dispatch(removeUser(id));
-};
+
 
   return (
     <div>
@@ -37,12 +35,7 @@ const Users = () => {
                 <strong>Téléphone:</strong> {user.phone}
               </p>
             </div>
-            <Button
-              variant="danger"
-              onClick={() => handleRemoveUser(user.id)}
-            >
-              Supprimer
-            </Button>
+            
           </ListGroup.Item>
         ))}
       </ListGroup>

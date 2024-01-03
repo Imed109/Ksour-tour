@@ -1,15 +1,33 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import axios from "axios"; // Import axios
 
 const Register = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     age: "",
-    phoneNumber: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
+  const registerUser = async (formData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/user/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("User registered:", response.data); // You can handle the response data as needed
+    } catch (error) {
+      console.error("There was a problem registering the user:", error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +40,8 @@ const Register = () => {
       alert("Les mots de passe ne correspondent pas.");
       return;
     }
-    console.log("Register Data:", formData);
+    registerUser(formData); // Call the API function to register the user
+    // Clear the form fields
     setFormData({
       fullName: "",
       email: "",

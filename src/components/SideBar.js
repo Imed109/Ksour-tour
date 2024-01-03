@@ -22,9 +22,7 @@ const Sidebar = () => {
         <li>
           <Link to="/admin/omra">Omra</Link>
         </li>
-        <li>
-          <Link to="/admin/omra">Omra</Link>
-        </li>
+        
         <li>
           <Link to="/admin/users">Users</Link>
         </li>

@@ -1,26 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCompany, removeCompany } from "../../JS/airlinesSlice";
+import {fetchAirlines} from "../../JS/airlinesSlice"
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
 import Sidebar from "../../components/SideBar";
+import axios from "axios";
 
 const AdminAirlines = () => {
   const [newCompany, setNewCompany] = useState({ name: "", image: "" });
   const companies = useSelector((state) => state.airlines.list);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAirlines());
+  }, [dispatch]);
 
-  const handleAddCompany = () => {
-    dispatch(addCompany(newCompany));
-    setNewCompany({ name: "", image: "" });
+  const handleAddCompany = async () => {
+    try {
+      await axios.post("http://localhost:3001/airline", newCompany);
+      dispatch(fetchAirlines());
+      setNewCompany({ name: "", image: "" });
+    } catch (error) {
+      console.error("Error adding company:", error);
+    }
   };
-
-  const handleRemoveCompany = (companyName) => {
-    dispatch(removeCompany(companyName));
+  
+  const handleRemoveCompany = async (companyName) => {
+    try {
+      await axios.delete(`http://localhost:3001/airline/${companyName}`);
+      dispatch(fetchAirlines());
+    } catch (error) {
+      console.error("Error removing company:", error);
+    }
   };
-
   return (
     <div>
       <Sidebar/>

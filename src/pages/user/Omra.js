@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOmra } from "../../JS/omraSlice";
 import { Link } from "react-router-dom";
 
 const Omra = () => {
+  const dispatch = useDispatch();
   const offers = useSelector((state) => state.omra.offers);
+
+  useEffect(() => {
+    dispatch(fetchOmra());
+  }, [dispatch]);
 
   return (
     <div>
@@ -17,7 +23,9 @@ const Omra = () => {
               <Card.Title>{offer.title}</Card.Title>
               <Card.Text>{offer.description}</Card.Text>
               <Card.Text>Price: {offer.price}</Card.Text>
-              <Button as={Link} to="/formulaire" variant="primary">Reservation</Button>
+              <Button as={Link} to="/formulaire" variant="primary">
+                Reservation
+              </Button>
             </Card.Body>
           </Card>
         ))}

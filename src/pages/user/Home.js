@@ -1,16 +1,12 @@
 import React from "react";
-import { Navbar, Container, Row, Col, Card } from "react-bootstrap";
+import {  Container, Row, Col, Card } from "react-bootstrap";
 import "./css/home.css"; // Import your CSS file for styling
+import Hero from "../../components/Hero";
 
 const Home = () => {
   return (
     <div>
-      <Navbar /> {/* Your navigation bar */}
-      <section className="hero-section">
-        <div className="hero-image">
-          {/* Image of Paris or any other desired image */}
-        </div>
-      </section>
+     <Hero/>
       <section className="trips-section">
         <Container>
           <h2>Our Organised Trips</h2>

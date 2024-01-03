@@ -6,6 +6,7 @@ import AdminHotels from "./adminHotels";
 import AdminFerries from "./adminFerries";
 import AdminOmra from "./adminOmra";
 import Users from "./Users";
+import DashBoard from "./dashBoard";
 // import AdminDashboard from "./pages/admin/AdminDashboard"; // If needed
 
 const AdminRoutes = () => {
@@ -17,7 +18,7 @@ const AdminRoutes = () => {
       <Route path="/ferries" element={<AdminFerries />} />
       <Route path="/omra" element={<AdminOmra />} />
       <Route path="/users" element={<Users />} />
-      {/* Add more admin routes as needed */}
+      <Route path="/dashboard" element={<DashBoard />} />
     </Routes>
   );
 };

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchShips } from "../../JS/ferriesSlice"; // Replace with the correct path to ferriesSlice
 
 // Custom card structure for ships
 const CustomShipCard = ({ ship }) => {
@@ -35,26 +36,23 @@ const CustomShipCard = ({ ship }) => {
 
 // Ship component
 const Ferries = () => {
-  // Sample list of ship companies (replace this with your data)
-  const ships = useSelector((state) => state.ferries.ships);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchShips());
+  }, [dispatch]);
+
+  const ships = useSelector((state) => state.ferries.ships);
 
   return (
     <div>
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-      >
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {ships.map((ship, index) => (
           <CustomShipCard key={index} ship={ship} />
         ))}
       </div>
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
-      >
-        <Button as={Link} to="/formulaire"
-          variant="primary"
-          
-        >
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+        <Button as={Link} to="/formulaire" variant="primary">
           Reservation
         </Button>
       </div>
@@ -63,3 +61,4 @@ const Ferries = () => {
 };
 
 export default Ferries;
+

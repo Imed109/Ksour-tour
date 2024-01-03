@@ -1,40 +1,31 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import "./css/navbar.scss"; // Import the SCSS file
+import ksour from "../assests/ksour.png"
 const NavBar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          Ksour Tour
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-            <Nav.Link as={Link} to="/airlines">
-              Airlines
-            </Nav.Link>
-            <Nav.Link as={Link} to="/Ferries">
-              Ferries
-            </Nav.Link>
-            <Nav.Link as={Link} to="/omra">
-              Omra
-            </Nav.Link>
-            <Nav.Link as={Link} to="/hotels">
-              Hotels
-            </Nav.Link>
-            <Nav.Link as={Link} to="/contact">
-              Contact
-            </Nav.Link>
-            <button>Se connecter</button>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="navbar-wrapper">
+
+    <nav className="navbar">
+      <div className="navbar-brand">
+      <Link to="/" className="navbar-brand">
+    <img src={ksour} alt="Agency Logo" className="logo" />
+    <span className="brand-text">Ksour Tour</span>
+  </Link>
+      </div>
+      <div className="navbar-links">
+        <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/airlines">Airlines</Link></li>
+          <li><Link to="/Ferries">Ferries</Link></li>
+          <li><Link to="/omra">Omra</Link></li>
+          <li><Link to="/hotels">Hotels</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <li><button>Se connecter</button></li>
+        </ul>
+      </div>
+    </nav>
+    </div>
   );
 };
 

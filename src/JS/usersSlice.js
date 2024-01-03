@@ -10,18 +10,7 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   }
 });
 
-export const removeUser = createAsyncThunk(
-  "users/removeUser",
-  async (id, { dispatch }) => {
-    try {
-      await axios.delete(`http://localhost:3001/user/${id}`);
-      // Dispatch fetchUsers action to refresh the user list after deletion
-      dispatch(fetchUsers());
-    } catch (error) {
-      throw error;
-    }
-  }
-);
+
 
 const usersSlice = createSlice({
   name: "users",

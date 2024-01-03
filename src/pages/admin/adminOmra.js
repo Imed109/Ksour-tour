@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addOffer, removeOffer } from "../../JS/omraSlice"; // Update the path to your omraSlice
 import { Form, Button, Container, Row, Col, ListGroup } from "react-bootstrap";
+import axios from "axios";
+import { fetchOmra } from "../../JS/omraSlice";
 
 const AdminOmra = () => {
   const [newOffer, setNewOffer] = useState({
@@ -13,19 +14,31 @@ const AdminOmra = () => {
 
   const offers = useSelector((state) => state.omra.offers);
   const dispatch = useDispatch();
-
-  const handleAddOffer = () => {
-    dispatch(addOffer(newOffer));
-    setNewOffer({
-      title: "",
-      description: "",
-      price: "",
-      image: "",
-    });
+  useEffect(() => {
+    dispatch(fetchOmra());
+  }, [dispatch]);
+  const handleAddOffer = async () => {
+    try {
+      await axios.post("http://localhost:3001/omra", newOffer);
+      setNewOffer({
+        title: "",
+        description: "",
+        price: "",
+        image: "",
+      });
+      dispatch(fetchOmra());
+    } catch (error) {
+      console.error("Error adding offer:", error);
+    }
   };
 
-  const handleRemoveOffer = (offer) => {
-    dispatch(removeOffer(offer));
+  const handleRemoveOffer = async (offer) => {
+    try {
+      await axios.delete(`http://localhost:3001/omra/${offer.title}`);
+      dispatch(fetchOmra());
+    } catch (error) {
+      console.error("Error removing offer:", error);
+    }
   };
 
   return (

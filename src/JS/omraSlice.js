@@ -1,33 +1,29 @@
 // omraSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const omraSlice = createSlice({
   name: "omra",
   initialState: {
-    offers: [{
-      title: "Standard Package",
-      description: "Basic accommodation and travel package for Umrah.",
-      price: "$1000",
-      image: "https://via.placeholder.com/150", // Replace with actual image URLs
-    },
-    {
-      title: "Premium Package",
-      description: "Luxury accommodation and travel package for Umrah.",
-      price: "$2000",
-      image: "https://via.placeholder.com/150", // Replace with actual image URLs
-    },
-   ], // Initial list of Omra offers
+    offers: [],
   },
   reducers: {
-    addOffer(state, action) {
-      state.offers.push(action.payload);
+    setOffers(state, action) {
+      state.offers = action.payload;
     },
-    removeOffer(state, action) {
-      state.offers = state.offers.filter((offer) => offer.title !== action.payload.title);
-    },
-    // Add more actions as needed
   },
 });
 
-export const { addOffer, removeOffer } = omraSlice.actions;
+export const { setOffers } = omraSlice.actions;
+
+export const fetchOmra = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:3001/omra");
+    dispatch(setOffers(response.data));
+  } catch (error) {
+    console.error("Error fetching Omra offers:", error);
+  }
+};
+
 export default omraSlice.reducer;
+

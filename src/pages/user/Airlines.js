@@ -1,11 +1,10 @@
-import React from "react";
+import React , { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Header from "../../components/Header"
-import Footer from "../../components/Footer"
-import NavBar from "../../components/NavBar"
-// Custom card structure
+import { useDispatch,useSelector } from "react-redux";
+import { fetchAirlines } from "../../JS/airlinesSlice";
+
+
 const CustomCard = ({ company }) => {
   return (
     <div
@@ -34,15 +33,17 @@ const CustomCard = ({ company }) => {
   );
 };
 
-// Airlines component
 const Airlines = () => {
+  const dispatch = useDispatch();
   const companies = useSelector((state) => state.airlines.list);
 
+  useEffect(() => {
+    dispatch(fetchAirlines());
+  }, [dispatch]);
   return (
     <div>
-      <Header/>
-      <NavBar/>
-      
+    
+
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {companies.map((company, index) => (
           <CustomCard key={index} company={company} />
@@ -53,7 +54,7 @@ const Airlines = () => {
           Reservation
         </Button>
       </div>
-      <Footer/>
+      
     </div>
   );
 };

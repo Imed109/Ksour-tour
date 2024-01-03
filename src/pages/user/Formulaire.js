@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import axios from 'axios';
 
 const Formulaire = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
     email: "",
-    telephone: "",
+    phone: "",
     inquiryType: "",
     request: "",
   });
@@ -15,19 +16,23 @@ const Formulaire = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid()) {
-      console.log("Form Data:", formData);
-      setFormData({
-        fullName: "",
-        age: "",
-        email: "",
-        telephone: "",
-        inquiryType: "",
-        request: "",
-      });
+      try {
+        const response = await axios.post('http://localhost:3001/formulaire', formData);
+        console.log('Form Data submitted:', response.data);
+        setFormData({
+          fullName: "",
+          age: "",
+          email: "",
+          phone: "",
+          inquiryType: "",
+          request: "",
+        });
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
     } else {
       alert("Please fill in all fields correctly.");
     }
@@ -39,7 +44,7 @@ const Formulaire = () => {
       formData.age.trim() !== "" &&
       parseInt(formData.age) > 0 &&
       formData.email.trim() !== "" &&
-      formData.telephone.trim() !== "" &&
+      formData.phone.trim() !== "" &&
       formData.inquiryType.trim() !== "" &&
       formData.request.trim() !== ""
     );
@@ -87,13 +92,13 @@ const Formulaire = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="telephone">
+            <Form.Group controlId="phone">
               <Form.Label>Téléphone</Form.Label>
               <Form.Control
                 type="tel"
                 placeholder="Entrez votre numéro de téléphone"
-                name="telephone"
-                value={formData.telephone}
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 required
               />
